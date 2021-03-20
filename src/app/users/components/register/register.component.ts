@@ -12,7 +12,7 @@ import usersList from 'src/assets/json/users.json';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
-  dataLoading: boolean = false;
+  dataLoading = false;
 
   constructor(private fb: FormBuilder, private router: Router) {}
 
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     }
     // TODO : Falta integrar el servicio para registrar al usuario
     // JSON simulando usuarios
-    var userLogin = this.registerForm.value;
+    const userLogin = this.registerForm.value;
     usersList.push(userLogin);
     console.log('User Register -->', usersList);
     this.router.navigate(['/principal/ships']);
