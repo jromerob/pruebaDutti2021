@@ -1,49 +1,54 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { first, map, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserModel } from '../models/user.model';
+import {
+  AngularFirestore,
+  AngularFirestoreCollection,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-  constructor(public httpClient: HttpClient) {}
+  usersRef: AngularFirestoreCollection<UserModel>;
 
-  public httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    }),
-  };
+  constructor(private db: AngularFirestore) {
+    this.usersRef = db.collection(environment.apis.dutti.endpoints.users);
+  }
 
   /**
    * Obtiene todos los usuarios
    */
-  public getAll(): Observable<UserModel[]> {
-    return this.httpClient.get<UserModel[]>(
-      `${environment.apis.dutti.baseUrl}${environment.apis.dutti.endpoints.users}`
-    );
+  public getAll(): AngularFirestoreCollection<UserModel> {
+    return this.usersRef;
+
     // TODO control de errores
   }
 
-  public get(firstName: string): Observable<UserModel> {
+  public get(userName: string): AngularFirestoreDocument<UserModel> {
     // TODO control de errores
-
-    const op = 'Obtener usuario nombre' + firstName;
-
-    return this.httpClient.get<UserModel>(
-      `${environment.apis.dutti.baseUrl}${environment.apis.dutti.endpoints.users}/${firstName}`,
-      this.httpOptions
+    return this.db.doc<UserModel>(
+      `${environment.apis.dutti.endpoints.users}/${userName}`
     );
   }
 
-  public update(user: UserModel): Observable<UserModel> {
-    const op = 'Actualizar usuario';
+  /**
+   * Crea el usuario estableciendo como indice su nombre de usuario
+   */
+  public create(user: UserModel): Promise<void> {
+    return this.usersRef.doc(user.email).set(user);
+  }
 
-    return this.httpClient.post<UserModel>(
-      `${environment.apis.dutti.baseUrl}${environment.apis.dutti.endpoints.users}`,
-      user,
-      this.httpOptions
-    );
+  public exists(userName: string): Promise<boolean> {
+    return this.get(userName)
+      .snapshotChanges()
+      .pipe(
+        map((changes) => changes.payload.exists),
+        take(1)
+      )
+      .toPromise();
   }
 }

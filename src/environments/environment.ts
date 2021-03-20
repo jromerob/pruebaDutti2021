@@ -6,10 +6,17 @@ export const environment = {
   production: false,
   apis: {
     dutti: {
+      firebase: {
+        apiKey: 'AIzaSyDgGKYOTpYSzqkFhXp5pQfCLq3dbZuoyc0',
+        authDomain: 'dutti2021-bf22a.firebaseapp.com',
+        projectId: 'dutti2021-bf22a',
+        storageBucket: 'dutti2021-bf22a.appspot.com',
+        messagingSenderId: '68036066952',
+        appId: '1:68036066952:web:b23b9cfa04331cdab9e93d',
+      },
       baseUrl: '',
       endpoints: {
-        users:
-          'http://des-tierra3visorweb.grupotecopy.es/mockserver/user-locations',
+        users: '/users',
       },
     },
   },
