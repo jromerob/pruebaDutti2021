@@ -20,7 +20,6 @@
       </div>
     </div>
     <div class="form-group mt-5" [ngClass]="{ 'has-error': loginForm.invalid }">
-      <!-- <label for="password">Password</label> -->
       <input
         type="password"
         class="form-control"
@@ -38,7 +37,7 @@
       </div>
     </div>
     <div class="buttons">
-      <!-- <button type="submit" [disabled]="loginForm.invalid" class="btn buttons__login">Iniciar sesión</button> -->
+      ->
       <button
         type="submit"
         [disabled]="loginForm.invalid"
@@ -56,9 +55,9 @@
       />
       <!-- <button type="button" class="btn buttons__register" routerLink="/register">Iniciar sesión</button> -->
     </div>
-    <div class="input-group-append" *ngIf="unregistered">
+    <div class="input-group-append" *ngIf="errorMsg">
       <span class="colorInvalid">
-        <i>Unregistered user</i>
+        <i>{{errorMsg}}</i>
       </span>
     </div>
   </form>
