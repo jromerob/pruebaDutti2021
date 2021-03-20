@@ -6,13 +6,13 @@ import { Router } from '@angular/router';
 import usersList from 'src/assets/json/users.json';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'app-user-register',
+  templateUrl: './user-register.component.html',
+  styleUrls: ['./user-register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class UserRegisterComponent implements OnInit {
   registerForm: FormGroup;
-  dataLoading: boolean = false;
+  dataLoading = false;
 
   constructor(private fb: FormBuilder, private router: Router) {}
 
@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
     }
     // TODO : Falta integrar el servicio para registrar al usuario
     // JSON simulando usuarios
-    var userLogin = this.registerForm.value;
+    const userLogin = this.registerForm.value;
     usersList.push(userLogin);
     console.log('User Register -->', usersList);
     this.router.navigate(['/principal/ships']);

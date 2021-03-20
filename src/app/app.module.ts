@@ -1,3 +1,4 @@
+import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -10,7 +11,13 @@ import { PrincipalComponent } from './components/principal/principal.component';
 
 @NgModule({
   declarations: [AppComponent, PrincipalComponent],
-  imports: [BrowserModule, AppRoutingModule, PrincipalModule, AuthModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    PrincipalModule,
+    AuthModule,
+    UsersModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
