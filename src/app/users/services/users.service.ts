@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserModel } from '../models/user.model';
@@ -5,8 +6,8 @@ import {
   AngularFirestore,
   AngularFirestoreCollection,
   AngularFirestoreDocument,
-  DocumentReference,
 } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -39,5 +40,11 @@ export class UsersService {
    */
   public create(user: UserModel): Promise<void> {
     return this.usersRef.doc(user.email).set(user);
+  }
+
+  public exists(userName: string): Observable<boolean> {
+    return this.get(userName)
+      .snapshotChanges()
+      .pipe(map((changes) => changes.payload.exists));
   }
 }

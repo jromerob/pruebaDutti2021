@@ -63,6 +63,11 @@
           <i>Username is required</i>
         </span>
       </div>
+      <div class="input-group-append form__required" *ngIf="error">
+        <span class="colorInvalid">
+          <i>Username exists</i>
+        </span>
+      </div>
     </div>
     <div
       class="form-group mt-5"

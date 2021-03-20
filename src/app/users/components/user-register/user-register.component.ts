@@ -20,6 +20,7 @@ export class UserRegisterComponent implements OnInit, OnDestroy {
   dataLoading = false;
   user = new UserModel();
   alive = true;
+  error = '';
 
   constructor(
     private fb: FormBuilder,
@@ -58,17 +59,25 @@ export class UserRegisterComponent implements OnInit, OnDestroy {
   }
 
   async registerUser() {
+    this.error = '';
     if (this.registerForm.invalid) {
       return;
     }
-
-    try {
-      await this.usersService.create(this.user);
-      console.log('User Register -->', usersList);
-      // TODO Navegar a login o hacer login auto
-      this.router.navigate(['/principal/ships']);
-    } catch (error) {
-      console.log(error);
-    }
+    this.usersService.exists(this.user.userName).subscribe(async (exists) => {
+      // TODO crear validador asíncrono
+      if (exists) {
+        this.error = 'El usuario ya existe';
+        return;
+      } else {
+        try {
+          await this.usersService.create(this.user);
+          console.log('User Register -->', usersList);
+          // TODO Navegar a login o hacer login auto
+          this.router.navigate(['/principal/ships']);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    });
   }
 }
