@@ -1,4 +1,5 @@
-import { first, map, take } from 'rxjs/operators';
+import { LoginResponseModel } from './../models/login-response.model';
+import { map, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserModel } from '../models/user.model';
@@ -7,7 +8,7 @@ import {
   AngularFirestoreCollection,
   AngularFirestoreDocument,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -20,27 +21,31 @@ export class UsersService {
   }
 
   /**
-   * Obtiene todos los usuarios
+   * Obtiene la colección de usuarios
    */
   public getAll(): AngularFirestoreCollection<UserModel> {
     return this.usersRef;
-
-    // TODO control de errores
   }
 
+  /**
+   *  Obtiene usuario por nombre de usuario
+   */
   public get(userName: string): AngularFirestoreDocument<UserModel> {
-    // TODO control de errores
     return this.db.doc<UserModel>(
       `${environment.apis.dutti.endpoints.users}/${userName}`
     );
   }
 
   /**
-   * Crea el usuario estableciendo como indice su nombre de usuario
+   * Crea el usuario estableciendo como índice su nombre de usuario
    */
   public create(user: UserModel): Promise<void> {
     return this.usersRef.doc(user.userName).set(user);
   }
+
+  /**
+   *  Valida si existe un usuario por su nombre de usuario
+   */
 
   public exists(userName: string): Promise<boolean> {
     return this.get(userName)
@@ -50,5 +55,30 @@ export class UsersService {
         take(1)
       )
       .toPromise();
+  }
+
+  /**
+   * Valida un usuario mediante su password
+   */
+  public validate(
+    userName: string,
+    password: string
+  ): Observable<LoginResponseModel> {
+    return this.get(userName)
+      .snapshotChanges()
+      .pipe(
+        map((changes) => {
+          if (changes.payload.exists) {
+            const user = changes.payload.data();
+            if (user.password === password) {
+              return { user, error: null };
+            } else {
+              return { user: null, error: 'Contraseña Incorrecta' };
+            }
+          } else {
+            return { user: null, error: 'Usuario no registrado' };
+          }
+        })
+      );
   }
 }
