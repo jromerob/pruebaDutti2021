@@ -4,6 +4,15 @@
 
 export const environment = {
   production: false,
+  apis: {
+    dutti: {
+      baseUrl: '',
+      endpoints: {
+        users:
+          'http://des-tierra3visorweb.grupotecopy.es/mockserver/user-locations',
+      },
+    },
+  },
 };
 
 /*
