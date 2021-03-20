@@ -14,8 +14,8 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   dataLoading = false;
   users: any = usersList;
-  unregistered: boolean = false;
-  invalid: boolean = false;
+  unregistered = false;
+  invalid = false;
 
   constructor(private fb: FormBuilder, private router: Router) {}
 
@@ -31,8 +31,8 @@ export class LoginComponent implements OnInit {
     }
     // TODO : Falta integrar el servicio para autentificar al usuario
     // JSON simulando usuarios
-    var userLogin = this.loginForm.value.username;
-    var filterJson = this.users.filter(function (user) {
+    const userLogin = this.loginForm.value.username;
+    const filterJson = this.users.filter((user) => {
       return user.first_name === userLogin;
     });
     if (filterJson.length > 0) {
