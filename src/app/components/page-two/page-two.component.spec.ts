@@ -6,12 +6,13 @@ describe('PageTwoComponent', () => {
   let component: PageTwoComponent;
   let fixture: ComponentFixture<PageTwoComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PageTwoComponent ]
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [PageTwoComponent],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PageTwoComponent);

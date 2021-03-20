@@ -7,13 +7,14 @@ describe('PrincipalComponent', () => {
   let component: PrincipalComponent;
   let fixture: ComponentFixture<PrincipalComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PrincipalComponent ],
-       imports:[RouterTestingModule.withRoutes([])],
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [PrincipalComponent],
+        imports: [RouterTestingModule.withRoutes([])],
+      }).compileComponents();
     })
-    .compileComponents();
-  }));
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PrincipalComponent);

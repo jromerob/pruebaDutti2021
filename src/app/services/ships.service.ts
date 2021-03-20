@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ShipsService {
-
-  url: string = 'https://swapi.dev/api/starships/'
+  url: string = 'https://swapi.dev/api/starships/';
   headerDict = {
-    'Authorization': 'none',
-    'Access-Control-Allow-Origin': '*'
-  }
-  requestOptions = {                                                                                                                                                                                 
-    headers: new HttpHeaders(this.headerDict), 
+    Authorization: 'none',
+    'Access-Control-Allow-Origin': '*',
   };
-  
-  constructor( private http: HttpClient ) {}
+  requestOptions = {
+    headers: new HttpHeaders(this.headerDict),
+  };
 
-  getShips(): Observable<any>{
-    return this.http.get(this.url).pipe( 
-      map( data => { return data })
-      );
+  constructor(private http: HttpClient) {}
+
+  getShips(): Observable<any> {
+    return this.http.get(this.url).pipe(
+      map((data) => {
+        return data;
+      })
+    );
   }
 }

@@ -14,13 +14,13 @@ import { ShipsDetailsComponent } from '../ships/ships-details/ships-details.comp
     ShipsComponent,
     ShipsDetailsComponent,
     PageOneComponent,
-    PageTwoComponent
+    PageTwoComponent,
   ],
   imports: [
     CommonModule,
     PrincipalComponentsRoutingModule,
     HttpClientModule,
-    NgxPaginationModule
-  ]
+    NgxPaginationModule,
+  ],
 })
-export class PrincipalModule { }
+export class PrincipalModule {}
