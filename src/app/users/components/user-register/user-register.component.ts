@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 
 // JSON
 import usersList from 'src/assets/json/users.json';
-import { takeWhile } from 'rxjs/operators';
+import { take, takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-register',
@@ -63,21 +63,19 @@ export class UserRegisterComponent implements OnInit, OnDestroy {
     if (this.registerForm.invalid) {
       return;
     }
-    this.usersService.exists(this.user.userName).subscribe(async (exists) => {
-      // TODO crear validador asíncrono
-      if (exists) {
-        this.error = 'El usuario ya existe';
-        return;
-      } else {
-        try {
-          await this.usersService.create(this.user);
-          console.log('User Register -->', usersList);
-          // TODO Navegar a login o hacer login auto
-          this.router.navigate(['/principal/ships']);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    });
+
+    if (await this.usersService.exists(this.user.userName)) {
+      this.error = 'El usuario ya existe';
+      return;
+    }
+
+    try {
+      await this.usersService.create(this.user);
+      console.log('User Register -->', usersList);
+      // TODO Navegar a login o hacer login auto
+      this.router.navigate(['/principal/ships']);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }

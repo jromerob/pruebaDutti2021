@@ -1,4 +1,4 @@
-import { map } from 'rxjs/operators';
+import { first, map, take } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { UserModel } from '../models/user.model';
@@ -42,9 +42,13 @@ export class UsersService {
     return this.usersRef.doc(user.email).set(user);
   }
 
-  public exists(userName: string): Observable<boolean> {
+  public exists(userName: string): Promise<boolean> {
     return this.get(userName)
       .snapshotChanges()
-      .pipe(map((changes) => changes.payload.exists));
+      .pipe(
+        map((changes) => changes.payload.exists),
+        take(1)
+      )
+      .toPromise();
   }
 }
