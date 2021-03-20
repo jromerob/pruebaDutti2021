@@ -1,39 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import { UserModel } from './../../models/user.model';
+import { UsersService } from './../../services/users.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
 // JSON
 import usersList from 'src/assets/json/users.json';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
   styleUrls: ['./user-register.component.scss'],
 })
-export class UserRegisterComponent implements OnInit {
+
+// TODO validar que el email no existe
+export class UserRegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
   dataLoading = false;
+  user = new UserModel();
+  alive = true;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit(): void {
-    this.registerForm = this.fb.group({
-      first_name: ['', [Validators.required, Validators.minLength(3)]],
-      last_name: ['', [Validators.required, Validators.minLength(3)]],
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.minLength(6)]],
-    });
+    // Creamos el formgroup con el modelo de usuario
+    this.registerForm = this.fb.group(this.user);
+    this.registerForm.controls.firstName.setValidators([
+      Validators.required,
+      Validators.minLength(3),
+    ]);
+    this.registerForm.controls.lastName.setValidators([
+      Validators.required,
+      Validators.minLength(3),
+    ]);
+    this.registerForm.controls.userName.setValidators([
+      Validators.required,
+      Validators.minLength(3),
+    ]);
+    this.registerForm.controls.email.setValidators([
+      Validators.required,
+      Validators.minLength(6),
+    ]);
+
+    // actualizamos el modelo en los cambios
+    this.registerForm.valueChanges
+      .pipe(takeWhile(() => this.alive))
+      .subscribe((changes) => (this.user = changes));
   }
 
-  registerUser() {
+  ngOnDestroy(): void {
+    this.alive = false;
+  }
+
+  async registerUser() {
     if (this.registerForm.invalid) {
       return;
     }
-    // TODO : Falta integrar el servicio para registrar al usuario
-    // JSON simulando usuarios
-    const userLogin = this.registerForm.value;
-    usersList.push(userLogin);
-    console.log('User Register -->', usersList);
-    this.router.navigate(['/principal/ships']);
+
+    try {
+      await this.usersService.create(this.user);
+      console.log('User Register -->', usersList);
+      // TODO Navegar a login o hacer login auto
+      this.router.navigate(['/principal/ships']);
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
