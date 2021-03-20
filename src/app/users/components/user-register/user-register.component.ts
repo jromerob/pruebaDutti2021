@@ -47,6 +47,10 @@ export class UserRegisterComponent implements OnInit, OnDestroy {
       Validators.required,
       Validators.minLength(6),
     ]);
+    this.registerForm.controls.password.setValidators([
+      Validators.required,
+      Validators.minLength(6),
+    ]);
 
     // actualizamos el modelo en los cambios
     this.registerForm.valueChanges
@@ -71,7 +75,7 @@ export class UserRegisterComponent implements OnInit, OnDestroy {
 
     try {
       await this.usersService.create(this.user);
-      console.log('User Register -->', usersList);
+      console.log('User Registered -->', this.user);
       // TODO Navegar a login o hacer login auto
       this.router.navigate(['/principal/ships']);
     } catch (error) {

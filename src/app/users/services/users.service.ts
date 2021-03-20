@@ -39,7 +39,7 @@ export class UsersService {
    * Crea el usuario estableciendo como indice su nombre de usuario
    */
   public create(user: UserModel): Promise<void> {
-    return this.usersRef.doc(user.email).set(user);
+    return this.usersRef.doc(user.userName).set(user);
   }
 
   public exists(userName: string): Promise<boolean> {
