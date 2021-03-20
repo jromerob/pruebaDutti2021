@@ -1,11 +1,12 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RegisterComponent } from './components/register/register.component';
+import { UserRegisterComponent } from './components/user-register/user-register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [RegisterComponent],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  exports: [RegisterComponent],
+  declarations: [UserRegisterComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  exports: [UserRegisterComponent],
 })
 export class UsersModule {}

@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 import usersList from 'src/assets/json/users.json';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss'],
+  selector: 'app-user-register',
+  templateUrl: './user-register.component.html',
+  styleUrls: ['./user-register.component.scss'],
 })
-export class RegisterComponent implements OnInit {
+export class UserRegisterComponent implements OnInit {
   registerForm: FormGroup;
   dataLoading = false;
 
