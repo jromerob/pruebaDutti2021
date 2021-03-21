@@ -1,3 +1,6 @@
+<h1>REdux: {{(shipsState$ | async).count}}</h1>
 <div class="container">
-  <ships-details [dataList]="dataList"></ships-details>
+  <app-ships-details
+    [ships]="(shipsState$ | async).results"
+  ></app-ships-details>
 </div>

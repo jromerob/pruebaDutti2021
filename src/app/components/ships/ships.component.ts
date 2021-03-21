@@ -1,5 +1,10 @@
+import { ShipsResponse } from './../../ships/models/ships-response.model';
 import { Component, OnInit } from '@angular/core';
-import { ShipsService } from 'src/app/services/ships.service';
+import { ShipsService } from '../../ships/services/ships.service';
+import { Store } from '@ngrx/store';
+import { AppState } from './../../app.state';
+import { Observable } from 'rxjs';
+import * as ShipsActions from '../../ships/store/ships.actions';
 
 @Component({
   selector: 'app-ships',
@@ -7,14 +12,16 @@ import { ShipsService } from 'src/app/services/ships.service';
   styleUrls: ['./ships.component.scss'],
 })
 export class ShipsComponent implements OnInit {
-  public dataList: any = [];
+  public shipsResponse: ShipsResponse;
+  // Estado de la consulta de ships
+  public shipsState$: Observable<ShipsResponse>;
 
-  constructor(private shipsService: ShipsService) {}
+  constructor(private store: Store<AppState>) {
+    // Observable del Store
+    this.shipsState$ = this.store.select('ships');
+  }
 
   ngOnInit(): void {
-    this.shipsService.getShips().subscribe((ships) => {
-      this.dataList = ships;
-      console.log('SHIPS -->', this.dataList.results);
-    });
+    this.store.dispatch({ type: ShipsActions.GET_SHIPS });
   }
 }

@@ -19,6 +19,12 @@ export const environment = {
         users: '/users',
       },
     },
+    starWars: {
+      baseUrl: 'https://swapi.dev/api',
+      endpoints: {
+        ships: '/starships',
+      },
+    },
   },
 };
 
