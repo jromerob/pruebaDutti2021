@@ -2,19 +2,19 @@ import { Component, OnInit, Input } from '@angular/core';
 declare var $: any;
 
 @Component({
-  selector: 'ships-details',
+  selector: 'app-ships-details',
   templateUrl: './ships-details.component.html',
   styleUrls: ['./ships-details.component.scss'],
 })
 export class ShipsDetailsComponent implements OnInit {
   @Input() dataList: any;
   config: any;
-  shipId: string = '';
-  url: string = '';
+  shipId = '';
+  url = '';
   // Modal
-  titleDetails: string = '';
-  modelDetails: string = '';
-  starship_class: string = '';
+  titleDetails = '';
+  modelDetails = '';
+  starshipClass = '';
 
   constructor() {}
 
@@ -40,6 +40,6 @@ export class ShipsDetailsComponent implements OnInit {
     $('#exampleModal').modal('show');
     this.titleDetails = details.name;
     this.modelDetails = details.model;
-    this.starship_class = details.starship_class;
+    this.starshipClass = details.starship_class;
   }
 }
