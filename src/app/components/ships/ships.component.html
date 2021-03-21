@@ -1,3 +1,4 @@
+<h1>REdux: {{(shipsState$ | async).count}}</h1>
 <div class="container" *ngIf="shipsResponse">
   <app-ships-details [ships]="shipsResponse.results"></app-ships-details>
 </div>

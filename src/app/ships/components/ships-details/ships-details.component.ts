@@ -36,6 +36,7 @@ export class ShipsDetailsComponent implements OnInit {
   }
 
   pageChanged(event) {
+    // TODO Despachar paginación
     this.config.currentPage = event;
   }
 

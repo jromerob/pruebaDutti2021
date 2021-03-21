@@ -7,7 +7,8 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class ShipsService {
-  url: string = 'https://swapi.dev/api/starships/';
+  url = 'https://swapi.dev/api/starships/';
+  // TODO interceptor
   headerDict = {
     Authorization: 'none',
     'Access-Control-Allow-Origin': '*',
