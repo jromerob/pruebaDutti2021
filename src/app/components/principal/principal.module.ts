@@ -1,3 +1,4 @@
+import { ShipsModule } from './../../ships/ships.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +15,7 @@ import { PageTwoComponent } from '../page-two/page-two.component';
     CommonModule,
     PrincipalComponentsRoutingModule,
     HttpClientModule,
-    NgxPaginationModule,
+    ShipsModule,
   ],
 })
 export class PrincipalModule {}
