@@ -15,6 +15,8 @@ import { UsersModule } from './users/users.module';
 // NGRX
 import { StoreModule } from '@ngrx/store';
 import { ShipsReducer } from './ships/store/ships.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ShipsEffects } from './ships/store/ships.effects';
 
 @NgModule({
   declarations: [AppComponent, PrincipalComponent],
@@ -27,6 +29,7 @@ import { ShipsReducer } from './ships/store/ships.reducer';
     AngularFireModule.initializeApp(environment.apis.dutti.firebase),
     AngularFirestoreModule,
     StoreModule.forRoot({ ships: ShipsReducer }),
+    EffectsModule.forRoot([ShipsEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,29 +1,19 @@
+import { ShipsResponse } from './../models/ships-response.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShipsService {
-  url = 'https://swapi.dev/api/starships/';
-  // TODO interceptor
-  headerDict = {
-    Authorization: 'none',
-    'Access-Control-Allow-Origin': '*',
-  };
-  requestOptions = {
-    headers: new HttpHeaders(this.headerDict),
-  };
-
   constructor(private http: HttpClient) {}
 
-  getShips(): Observable<any> {
-    return this.http.get(this.url).pipe(
-      map((data) => {
-        return data;
-      })
+  getAll(): Observable<ShipsResponse> {
+    return this.http.get<ShipsResponse>(
+      `${environment.apis.starWars.baseUrl}${environment.apis.starWars.endpoints.ships}`
     );
   }
 }
