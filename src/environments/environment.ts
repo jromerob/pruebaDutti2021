@@ -25,6 +25,12 @@ export const environment = {
         ships: '/starships',
       },
     },
+    starwarsVisualguide: {
+      baseUrl: 'https://starwars-visualguide.com',
+      endpoints: {
+        shipsImages: '/assets/img/starships',
+      },
+    },
   },
 };
 

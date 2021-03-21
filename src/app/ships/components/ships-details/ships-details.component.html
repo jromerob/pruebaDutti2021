@@ -4,11 +4,11 @@
 ></pagination-controls>
 <div
   class="ship"
-  *ngFor="let ship of ships | paginate: config; ; let i = index"
+  *ngFor="let ship of ships | paginate: config; let i = index"
   (click)="openDetails(ships)"
 >
   <div class="panel-heading">
-    <h3 class="panel-title">{{ship.name}}</h3>
+    <h3 class="panel-title">{{ ship.name }}</h3>
   </div>
   <div class="panel-body text-center color">
     <img
@@ -31,7 +31,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">{{titleDetails}}</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{ titleDetails }}</h5>
         <button
           type="button"
           class="close"
@@ -42,8 +42,9 @@
         </button>
       </div>
       <div class="modal-body">
-        <span>Model : {{modelDetails}}</span><br />
-        <span>starship_class: {{starshipClass}}</span>
+        <span>Model : {{ modelDetails }}</span
+        ><br />
+        <span>starship_class: {{ starshipClass }}</span>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">
