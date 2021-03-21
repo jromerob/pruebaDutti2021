@@ -10,8 +10,8 @@ const routes: Routes = [
   {
     path: 'principal',
     loadChildren: () =>
-      import(`./components/principal/principal.module`).then(
-        (m) => m.PrincipalModule
+      import(`./pages/principal-page/principal-page.module`).then(
+        (m) => m.PrincipalPageModule
       ),
   },
   // { path: 'ships', loadChildren: () => import(`./components/ships/ships.module`).then(m => m.ShipsModule) }

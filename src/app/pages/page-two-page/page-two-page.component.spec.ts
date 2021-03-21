@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { PageOneComponent } from './page-one.component';
+import { PageTwoComponent } from './page-two-page.component';
 
-describe('PageOneComponent', () => {
-  let component: PageOneComponent;
-  let fixture: ComponentFixture<PageOneComponent>;
+describe('PageTwoComponent', () => {
+  let component: PageTwoComponent;
+  let fixture: ComponentFixture<PageTwoComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [PageOneComponent],
+        declarations: [PageTwoComponent],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PageOneComponent);
+    fixture = TestBed.createComponent(PageTwoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

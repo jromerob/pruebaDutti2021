@@ -1,23 +1,23 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { PrincipalComponent } from './principal.component';
+import { PrincipalPageComponent } from './principal-page.component';
 
-describe('PrincipalComponent', () => {
-  let component: PrincipalComponent;
-  let fixture: ComponentFixture<PrincipalComponent>;
+describe('PrincipalPageComponent', () => {
+  let component: PrincipalPageComponent;
+  let fixture: ComponentFixture<PrincipalPageComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [PrincipalComponent],
+        declarations: [PrincipalPageComponent],
         imports: [RouterTestingModule.withRoutes([])],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PrincipalComponent);
+    fixture = TestBed.createComponent(PrincipalPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,11 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
-import { PrincipalModule } from './components/principal/principal.module';
+import { PrincipalPageModule } from './pages/principal-page/principal-page.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { PrincipalComponent } from './components/principal/principal.component';
+import { PrincipalPageComponent } from './pages/principal-page/principal-page.component';
 import { UsersModule } from './users/users.module';
 
 // NGRX
@@ -19,11 +19,11 @@ import { EffectsModule } from '@ngrx/effects';
 import { ShipsEffects } from './ships/store/ships.effects';
 
 @NgModule({
-  declarations: [AppComponent, PrincipalComponent],
+  declarations: [AppComponent, PrincipalPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PrincipalModule,
+    PrincipalPageModule,
     AuthModule,
     UsersModule,
     AngularFireModule.initializeApp(environment.apis.dutti.firebase),
