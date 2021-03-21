@@ -1,4 +1,7 @@
+import { ShipModel } from './../../models/ship.model';
+import { ShipsModule } from './../../ships.module';
 import { Component, OnInit, Input } from '@angular/core';
+import { ShipsResponse } from '../../models/ships-response.model';
 declare var $: any;
 
 @Component({
@@ -7,7 +10,7 @@ declare var $: any;
   styleUrls: ['./ships-details.component.scss'],
 })
 export class ShipsDetailsComponent implements OnInit {
-  @Input() dataList: any;
+  @Input() ships: ShipModel[];
   config: any;
   shipId = '';
   url = '';
@@ -22,7 +25,7 @@ export class ShipsDetailsComponent implements OnInit {
     this.config = {
       itemsPerPage: 5,
       currentPage: 1,
-      totalItems: this.dataList.length,
+      totalItems: this.ships.length,
     };
   }
 
