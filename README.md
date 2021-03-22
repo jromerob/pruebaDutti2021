@@ -34,9 +34,13 @@ Navigate to `http://localhost:4200/`.
 
 # Notas del desarrollador:
 
-Uso de gitflow (features)
-Commits siguiendo conventional Commits
-Se implementa caché en el servicio
-Se evita llamada a función en el template de ships para obtener imégenes. Se mapea en array asociativo
+Para el desarrollo de la prueba se ha hecho uso de la metodología GitFlow. - Se han ido desarrollando funcionalidades mediante la creación de features que al ir cerrando se han incorporado a la rama develop. - Finalmente se ha generado una release que se ha cerrado generando la version 1.0.0 en la rama master
+Para la descripción de commits se ha seguido la especificación Conventional Commits identificando commits de features, documentación, test, estilos,...
+Para evitar la sobrecarga del servidor por peticiones a la API de Ships se ha desarrollado un sistema simple de cacheado en memoria en el servicio ships.service.ts
+Se ha eliminado la llamada a funciones en el tempalte de ships para obtener imágenes. Se ha sustituido por la generación de un array asociativo en el componente con la correspondencia entre ship e imagen
+Se han renombrado variables que no identifican contenido como Data, datalist,...
+Se ha reestructurado el proyecto por features que contienen sus propios módulos. en concreto se han identificado users, ships y auth
+Al no entrar en los requisitos no se ha modificado la navegación pero una posible mejora sería realizar la carga del layout (principal) app.component.html y que en el router-outlet se cargaran las páginas (\*-page) mediante módulos y carga lazy-load
+Para mantener el usuario logado se ha optado por emitir un observable desde el servicio al que se pude suscribir cualquier componente que necesite ser notificado de cambios en el login.
 
-Renombrado nombre de variables que no identifican contenido
+Saludos
