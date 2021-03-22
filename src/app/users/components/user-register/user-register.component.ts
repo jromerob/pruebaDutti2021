@@ -72,7 +72,6 @@ export class UserRegisterComponent implements OnInit, OnDestroy {
     try {
       await this.usersService.create(this.user);
       console.log('User Registered -->', this.user);
-      // TODO Navegar a login o hacer login auto
       this.router.navigate(['/']);
     } catch (error) {
       console.log(error);
