@@ -1,0 +1,7 @@
+<div class="container">
+  <app-ships-details
+    [ships]="(shipsState$ | async).shipsResponse.results"
+    [currentPage]="(shipsState$ | async).currentPage"
+    [totalShips]="(shipsState$ | async).shipsResponse.count"
+  ></app-ships-details>
+</div>

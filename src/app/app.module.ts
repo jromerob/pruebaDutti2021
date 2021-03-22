@@ -1,32 +1,37 @@
+import { AuthModule } from './auth/auth.module';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { PrincipalModule } from './components/principal/principal.module';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+import { PrincipalPageModule } from './pages/principal-page/principal-page.module';
 
 // Components
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { PrincipalComponent } from './components/principal/principal.component';
+import { PrincipalPageComponent } from './pages/principal-page/principal-page.component';
+import { UsersModule } from './users/users.module';
 
+// NGRX
+import { StoreModule } from '@ngrx/store';
+import { ShipsReducer } from './ships/store/ships.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ShipsEffects } from './ships/store/ships.effects';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
-    PrincipalComponent
-  ],
+  declarations: [AppComponent, PrincipalPageComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    PrincipalModule
-
+    PrincipalPageModule,
+    AuthModule,
+    UsersModule,
+    AngularFireModule.initializeApp(environment.apis.dutti.firebase),
+    AngularFirestoreModule,
+    StoreModule.forRoot({ ships: ShipsReducer }),
+    EffectsModule.forRoot([ShipsEffects]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

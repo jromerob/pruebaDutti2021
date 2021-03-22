@@ -3,7 +3,36 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apis: {
+    dutti: {
+      firebase: {
+        apiKey: 'AIzaSyDgGKYOTpYSzqkFhXp5pQfCLq3dbZuoyc0',
+        authDomain: 'dutti2021-bf22a.firebaseapp.com',
+        projectId: 'dutti2021-bf22a',
+        storageBucket: 'dutti2021-bf22a.appspot.com',
+        messagingSenderId: '68036066952',
+        appId: '1:68036066952:web:b23b9cfa04331cdab9e93d',
+      },
+      baseUrl: '',
+      endpoints: {
+        users: '/users',
+      },
+    },
+    starWars: {
+      baseUrl: 'https://swapi.dev/api',
+      endpoints: {
+        ships: '/starships',
+      },
+    },
+    starwarsVisualguide: {
+      baseUrl: 'https://starwars-visualguide.com',
+      endpoints: {
+        shipsImages: '/assets/img/starships',
+      },
+    },
+  },
+  resultsPerPage: 10,
 };
 
 /*
