@@ -37,5 +37,6 @@ Navigate to `http://localhost:4200/`.
 Uso de gitflow (features)
 Commits siguiendo conventional Commits
 Se implementa caché en el servicio
+Se evita llamada a función en el template de ships para obtener imégenes. Se mapea en array asociativo
 
 Renombrado nombre de variables que no identifican contenido
