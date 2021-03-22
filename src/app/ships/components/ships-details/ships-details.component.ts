@@ -37,7 +37,6 @@ export class ShipsDetailsComponent implements OnChanges {
     });
   }
 
-  // TODO establecer todas las imágenes al inicio para evitar funciones en el html
   private getStarshipImageFromUrl(url: string) {
     // si la url termina en / lo eliminamos
     if (url[url.length - 1] === '/') {

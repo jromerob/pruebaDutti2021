@@ -23,16 +23,14 @@ export function ShipsReducer(
 ) {
   switch (action.type) {
     case ShipActions.GET_SHIPS:
-      // TODO Effecto para cargar ships
       return state;
     case ShipActions.GET_SHIPS_PAGE:
-      // TODO Effecto para cargar ships paginados
       return state;
     case ShipActions.GET_SHIPS_ERROR:
-      // TODO Effecto para mostrar error
+      // NOTE esto se podría mostrar en un div en la página
+      alert('Se ha producido un error en la carga');
       return state;
     case ShipActions.GET_SHIPS_SUCCESS:
-      // TODO Validar retorno de estado
       return { ...action.payload };
     default:
       return state;
