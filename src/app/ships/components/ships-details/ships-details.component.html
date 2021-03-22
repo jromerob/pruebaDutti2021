@@ -4,8 +4,8 @@
 ></pagination-controls>
 <div
   class="ship"
-  *ngFor="let ship of ships | paginate: config; let i = index"
-  (click)="openDetails(ships)"
+  *ngFor="let ship of ships | paginate: {itemsPerPage:ships.length,currentPage: currentPage,totalItems:totalShips}"
+  (click)="openDetails(ship)"
 >
   <div class="panel-heading">
     <h3 class="panel-title">{{ ship.name }}</h3>
@@ -42,8 +42,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <span>Model : {{ modelDetails }}</span
-        ><br />
+        <span>Model : {{ modelDetails }}</span><br />
         <span>starship_class: {{ starshipClass }}</span>
       </div>
       <div class="modal-footer">

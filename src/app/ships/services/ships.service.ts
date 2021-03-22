@@ -16,4 +16,10 @@ export class ShipsService {
       `${environment.apis.starWars.baseUrl}${environment.apis.starWars.endpoints.ships}`
     );
   }
+
+  getPage(page: number): Observable<ShipsResponse> {
+    return this.http.get<ShipsResponse>(
+      `${environment.apis.starWars.baseUrl}${environment.apis.starWars.endpoints.ships}?page=${page}`
+    );
+  }
 }

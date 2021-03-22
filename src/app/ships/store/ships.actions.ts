@@ -1,3 +1,4 @@
+import { ShipsState } from './../models/ships-state.model';
 import { ShipsResponse } from './../models/ships-response.model';
 import { Action } from '@ngrx/store';
 
@@ -13,7 +14,7 @@ export class GetShips implements Action {
 
 export class GetShipsSuccess implements Action {
   readonly type = GET_SHIPS_SUCCESS;
-  constructor(public payload: ShipsResponse) {}
+  constructor(public payload: ShipsState) {}
 }
 
 export class GetShipsError implements Action {

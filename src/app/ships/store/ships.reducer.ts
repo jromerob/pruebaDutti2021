@@ -33,7 +33,7 @@ export function ShipsReducer(
       return state;
     case ShipActions.GET_SHIPS_SUCCESS:
       // TODO Validar retorno de estado
-      return { currentPage: 1, shipsResponse: { ...action.payload } };
+      return { ...action.payload };
     default:
       return state;
   }

@@ -22,6 +22,9 @@ export class ShipsPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch({ type: ShipsActions.GET_SHIPS });
+    this.store.dispatch({
+      type: ShipsActions.GET_SHIPS_PAGE,
+      payload: { page: 1 },
+    });
   }
 }
