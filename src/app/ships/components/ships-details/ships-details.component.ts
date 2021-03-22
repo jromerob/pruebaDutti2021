@@ -1,6 +1,6 @@
 import * as ShipsActions from './../../store/ships.actions';
 import { ShipModel } from './../../models/ship.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { environment } from 'src/environments/environment';
 declare var $: any;
 import { Store } from '@ngrx/store';
@@ -10,12 +10,13 @@ import { Store } from '@ngrx/store';
   templateUrl: './ships-details.component.html',
   styleUrls: ['./ships-details.component.scss'],
 })
-export class ShipsDetailsComponent implements OnInit {
+export class ShipsDetailsComponent implements OnChanges {
   @Input() ships: ShipModel[];
   @Input() currentPage: number;
   @Input() totalShips: number;
 
-  public shipsPerPage = environment.resultsPerPAge;
+  public shipsPerPage = environment.resultsPerPage;
+  public shipsImages: string[] = [];
   // Modal
   titleDetails = '';
   modelDetails = '';
@@ -23,10 +24,21 @@ export class ShipsDetailsComponent implements OnInit {
 
   constructor(private store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnChanges(changes: SimpleChanges): void {
+    // Establecemos el array dfe imágenes para evitar llamadas a funciones desde el template
+    this.generateStarshipsImages();
+  }
+
+  private generateStarshipsImages() {
+    this.ships.forEach((ship) => {
+      if (!this.shipsImages[ship.url]) {
+        this.shipsImages[ship.url] = this.getStarshipImageFromUrl(ship.url);
+      }
+    });
+  }
 
   // TODO establecer todas las imágenes al inicio para evitar funciones en el html
-  getStarshipId(url: string) {
+  private getStarshipImageFromUrl(url: string) {
     // si la url termina en / lo eliminamos
     if (url[url.length - 1] === '/') {
       url = url.substring(0, url.length - 1);

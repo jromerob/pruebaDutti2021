@@ -32,7 +32,7 @@ export const environment = {
       },
     },
   },
-  resultsPerPAge: 10,
+  resultsPerPage: 10,
 };
 
 /*
