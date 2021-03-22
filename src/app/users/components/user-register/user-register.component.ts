@@ -4,17 +4,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 
-// JSON
-import usersList from 'src/assets/json/users.json';
-import { take, takeWhile } from 'rxjs/operators';
+import { takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
   styleUrls: ['./user-register.component.scss'],
 })
-
-// TODO validar que el email no existe
 export class UserRegisterComponent implements OnInit, OnDestroy {
   registerForm: FormGroup;
   dataLoading = false;
@@ -77,7 +73,7 @@ export class UserRegisterComponent implements OnInit, OnDestroy {
       await this.usersService.create(this.user);
       console.log('User Registered -->', this.user);
       // TODO Navegar a login o hacer login auto
-      this.router.navigate(['/principal/ships']);
+      this.router.navigate(['/']);
     } catch (error) {
       console.log(error);
     }
