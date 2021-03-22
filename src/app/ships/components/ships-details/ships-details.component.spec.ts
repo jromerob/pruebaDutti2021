@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ShipsDetailsComponent } from './ships-details.component';
 import { PaginationControlsComponent } from 'ngx-pagination';
 import { Component, Pipe, PipeTransform } from '@angular/core';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('ShipsDetailsComponent', () => {
   let component: ShipsDetailsComponent;
@@ -27,6 +28,7 @@ describe('ShipsDetailsComponent', () => {
       TestBed.configureTestingModule({
         imports: [HttpClientModule],
         declarations: [ShipsDetailsComponent, MockPaginationControls, MockPipe],
+        providers: [provideMockStore({})],
       }).compileComponents();
     })
   );

@@ -5,6 +5,7 @@ import { ShipsService } from 'src/app/ships/services/ships.service';
 import { ShipsPageComponent } from './ships-page.component';
 
 import { BehaviorSubject, of } from 'rxjs';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('ShipsComponent', () => {
   let component: ShipsPageComponent;
@@ -27,7 +28,10 @@ describe('ShipsComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         declarations: [ShipsPageComponent, MockShipDetails],
-        providers: [{ provide: ShipsService, useValue: serviceMock }],
+        providers: [
+          { provide: ShipsService, useValue: serviceMock },
+          provideMockStore({}),
+        ],
       }).compileComponents();
     })
   );
