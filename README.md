@@ -33,3 +33,5 @@ Run `npm run start` for a dev server.
 Navigate to `http://localhost:4200/`.
 
 # Notas del desarrollador:
+
+Renombrado nombre de variables que no identifican contenido
