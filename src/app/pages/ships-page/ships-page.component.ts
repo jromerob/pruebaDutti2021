@@ -12,7 +12,6 @@ import * as ShipsActions from '../../ships/store/ships.actions';
   styleUrls: ['./ships-page.component.scss'],
 })
 export class ShipsPageComponent implements OnInit {
-  public shipsResponse: ShipsResponse;
   // Estado de la consulta de ships
   public shipsState$: Observable<ShipsState>;
 

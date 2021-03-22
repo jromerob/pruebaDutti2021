@@ -36,7 +36,7 @@ describe('ShipsDetailsComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(ShipsDetailsComponent);
     component = fixture.componentInstance;
-    component.ships = {};
+    component.ships = [];
     fixture.detectChanges();
   });
 

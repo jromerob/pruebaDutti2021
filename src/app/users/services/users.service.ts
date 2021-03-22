@@ -17,7 +17,7 @@ export class UsersService {
   usersRef: AngularFirestoreCollection<UserModel>;
 
   constructor(private db: AngularFirestore) {
-    this.usersRef = db.collection(environment.apis.dutti.endpoints.users);
+    this.usersRef = this.db.collection(environment.apis.dutti.endpoints.users);
   }
 
   /**
@@ -41,6 +41,13 @@ export class UsersService {
    */
   public create(user: UserModel): Promise<void> {
     return this.usersRef.doc(user.userName).set(user);
+  }
+
+  /**
+   * elimina el usuario
+   */
+  public delete(user: UserModel): Promise<void> {
+    return this.usersRef.doc(user.userName).delete();
   }
 
   /**
