@@ -1,5 +1,5 @@
-import { ShipsResponse } from './ships/models/ships-response.model';
+import { ShipsState } from './ships/models/ships-state.model';
 
 export interface AppState {
-  readonly ships: ShipsResponse;
+  readonly ships: ShipsState;
 }

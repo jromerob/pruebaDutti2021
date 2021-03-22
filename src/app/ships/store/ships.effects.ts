@@ -4,10 +4,11 @@ import { of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
 import { ShipsService } from '../services/ships.service';
 import * as ShipsActions from './ships.actions';
+import { GetShipsPage } from './ships.actions';
 
 @Injectable()
 export class ShipsEffects {
-  loadMovies$ = createEffect(() =>
+  loadShips$ = createEffect(() =>
     this.actions$.pipe(
       ofType(ShipsActions.GET_SHIPS),
       mergeMap(() =>
@@ -19,6 +20,21 @@ export class ShipsEffects {
           catchError(() => of({ type: ShipsActions.GET_SHIPS_ERROR }))
         )
       )
+    )
+  );
+
+  loadShipsPage$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(ShipsActions.GET_SHIPS_PAGE),
+      mergeMap((action: GetShipsPage) => {
+        return this.shipsService.getPage(action.payload.page).pipe(
+          map((shipsResponse) => ({
+            type: ShipsActions.GET_SHIPS_SUCCESS,
+            payload: { shipsResponse, currentPage: action.payload.page },
+          })),
+          catchError(() => of({ type: ShipsActions.GET_SHIPS_ERROR }))
+        );
+      })
     )
   );
 
