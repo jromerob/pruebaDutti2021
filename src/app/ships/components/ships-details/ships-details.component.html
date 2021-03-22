@@ -4,7 +4,7 @@
 ></pagination-controls>
 <div
   class="ship"
-  *ngFor="let ship of ships | paginate: {itemsPerPage:ships.length,currentPage: currentPage,totalItems:totalShips}"
+  *ngFor="let ship of ships | paginate: {itemsPerPage:shipsPerPage,currentPage: currentPage,totalItems:totalShips}"
   (click)="openDetails(ship)"
 >
   <div class="panel-heading">

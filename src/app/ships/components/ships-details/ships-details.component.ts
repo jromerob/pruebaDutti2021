@@ -1,7 +1,9 @@
+import * as ShipsActions from './../../store/ships.actions';
 import { ShipModel } from './../../models/ship.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { environment } from 'src/environments/environment';
 declare var $: any;
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-ships-details',
@@ -12,14 +14,14 @@ export class ShipsDetailsComponent implements OnInit {
   @Input() ships: ShipModel[];
   @Input() currentPage: number;
   @Input() totalShips: number;
-  shipId = '';
-  url = '';
+
+  public shipsPerPage = environment.resultsPerPAge;
   // Modal
   titleDetails = '';
   modelDetails = '';
   starshipClass = '';
 
-  constructor() {}
+  constructor(private store: Store) {}
 
   ngOnInit(): void {}
 
@@ -29,13 +31,16 @@ export class ShipsDetailsComponent implements OnInit {
     if (url[url.length - 1] === '/') {
       url = url.substring(0, url.length - 1);
     }
-    this.shipId = url.substring(url.lastIndexOf('/') + 1);
-    const urlImage = `${environment.apis.starwarsVisualguide.baseUrl}${environment.apis.starwarsVisualguide.endpoints.shipsImages}/${this.shipId}.jpg`;
+    const shipId = url.substring(url.lastIndexOf('/') + 1);
+    const urlImage = `${environment.apis.starwarsVisualguide.baseUrl}${environment.apis.starwarsVisualguide.endpoints.shipsImages}/${shipId}.jpg`;
     return urlImage;
   }
 
-  pageChanged(event) {
-    // TODO Despachar paginación
+  pageChanged(page: number) {
+    this.store.dispatch({
+      type: ShipsActions.GET_SHIPS_PAGE,
+      payload: { page },
+    });
   }
 
   openDetails(details) {
