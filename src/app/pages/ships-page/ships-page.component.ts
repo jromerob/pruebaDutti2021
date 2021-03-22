@@ -1,3 +1,4 @@
+import { ShipsState } from './../../ships/models/ships-state.model';
 import { ShipsResponse } from '../../ships/models/ships-response.model';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -13,7 +14,7 @@ import * as ShipsActions from '../../ships/store/ships.actions';
 export class ShipsPageComponent implements OnInit {
   public shipsResponse: ShipsResponse;
   // Estado de la consulta de ships
-  public shipsState$: Observable<ShipsResponse>;
+  public shipsState$: Observable<ShipsState>;
 
   constructor(private store: Store<AppState>) {
     // Observable del Store

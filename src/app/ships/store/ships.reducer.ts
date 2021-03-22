@@ -1,3 +1,4 @@
+import { ShipsState } from './../models/ships-state.model';
 import { ShipsActions } from './ships.actions';
 
 // 1 - Importaciones
@@ -5,16 +6,19 @@ import * as ShipActions from './ships.actions';
 import { ShipsResponse } from '../models/ships-response.model';
 
 // 2 - Estado inicial
-const initialState: ShipsResponse = {
-  count: 0,
-  next: null,
-  previous: null,
-  results: [],
+const initialState: ShipsState = {
+  currentPage: 0,
+  shipsResponse: {
+    count: 0,
+    next: null,
+    previous: null,
+    results: [],
+  },
 };
 
 // 3 - Switch con las funciones puras
 export function ShipsReducer(
-  state: ShipsResponse = initialState,
+  state: ShipsState = initialState,
   action: ShipsActions
 ) {
   switch (action.type) {
@@ -29,7 +33,7 @@ export function ShipsReducer(
       return state;
     case ShipActions.GET_SHIPS_SUCCESS:
       // TODO Validar retorno de estado
-      return { ...action.payload };
+      return { currentPage: 1, shipsResponse: { ...action.payload } };
     default:
       return state;
   }
