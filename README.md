@@ -34,4 +34,8 @@ Navigate to `http://localhost:4200/`.
 
 # Notas del desarrollador:
 
+Uso de gitflow (features)
+Commits siguiendo conventional Commits
+Se implementa caché en el servicio
+
 Renombrado nombre de variables que no identifican contenido
